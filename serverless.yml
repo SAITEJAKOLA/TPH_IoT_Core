@@ -1,0 +1,27 @@
+service: tphIotCore
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - "iot:Publish"
+          Resource: "*"
+
+functions:
+  publishToIoT:
+    handler: api/handler.publishToIoT
+    events:
+      - eventBridge:
+          schedule: rate(1 minute)
+      - http:
+          path: publishToIoT
+          method: post
+          cors: true
+
+plugins:
+  - serverless-offline
