@@ -9,7 +9,12 @@ Simulate an IoT device using AWS Lambda to generate and publish random sensor da
 # Monitor Data in AWS IoT Core and Timestream Database
 
 - create your own timestream database and the table so that we can push the data.
+    - After creating a timestream database we can run this query to check the data
+    - SELECT * FROM "tph_sensor"."tph_sensor_table
+    - Database Name: tph_sensor
+    - Tabel Name: tph_sensor_table
 - Set up an IoT Core Rule to route the data from the sensor/data topic into the Timestream Database.
+    - MQTT topic: "sensor/data"
 - Create a Grafana Dashboard to visualize the data for temperature, humidity, and pressure over time.
 - Creation of IoT Core rule 
     - SELECT timestamp, Device_ID, temperature, pressure, humidity FROM 'sensor/data';
